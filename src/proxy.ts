@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { USER_ROLES, UserRoles } from "./constants/user/UserRoles";
 import { env } from "./env";
+import { USER_ROLES, UserRoles } from "./constants/user/UserRoles";
+
 
 
 const AUTH_URL = env.AUTH_URL;
