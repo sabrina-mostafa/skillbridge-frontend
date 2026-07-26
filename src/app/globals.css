@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "shadcn/tailwind.css";
+/* @import "shadcn/tailwind.css"; */
 
 @custom-variant dark (&:is(.dark *));
 
@@ -48,7 +48,7 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-:root {
+/* :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -81,9 +81,42 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+} */
+
+:root {
+  --background: oklch(98.4% 0.003 247.858);   /* soft cool white */
+  --foreground: oklch(0.22 0.02 270);    /* deep slate text */
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.02 270);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.02 270);
+
+  /* PRIMARY → Violet (premium + education feel) */
+  --primary: oklch(51.017% 0.26191 276.948);
+  --primary-foreground: oklch(0.98 0 0);
+
+  --secondary: oklch(0.96 0.01 270);
+  --secondary-foreground: oklch(0.22 0.02 270);
+
+  --muted: oklch(0.95 0.01 270);
+  --muted-foreground: oklch(0.5 0.02 270);
+
+  /* ACCENT → Coral (for highlights, badges, CTAs) */
+  --accent: oklch(0.78 0.16 25);
+  --accent-foreground: oklch(0.98 0 0);
+
+  --destructive: oklch(0.65 0.22 25);
+
+  --border: oklch(0.9 0.01 270);
+  --input: oklch(0.9 0.01 270);
+  --ring: oklch(0.62 0.18 295);
+
+  --radius: 0.9rem;
 }
 
-.dark {
+/* .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
@@ -115,7 +148,40 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+} */
+
+.dark {
+  --background: oklch(21.226% 0.03502 268.532);
+  --foreground: oklch(0.96 0.01 270);
+
+  --card: oklch(24.362% 0.03527 262.624);
+  --card-foreground: oklch(0.96 0.01 270);
+
+  --popover: oklch(0.2 0.02 270);
+  --popover-foreground: oklch(0.96 0.01 270);
+
+  /* brighter violet in dark mode */
+  --primary: oklch(57.84% 0.21697 282.656);
+  --primary-foreground: oklch(0.14 0.02 270);
+
+  --secondary: oklch(0.25 0.02 270);
+  --secondary-foreground: oklch(0.96 0.01 270);
+
+  --muted: oklch(0.25 0.02 270);
+  --muted-foreground: oklch(100% 0.00011 271.152);
+
+  --accent: oklch(0.72 0.15 25);
+  --accent-foreground: oklch(0.98 0 0);
+
+  --destructive: oklch(0.7 0.2 25);
+
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.72 0.18 295);
+
+  --radius: 0.9rem;
 }
+
 
 @layer base {
   * {
@@ -127,4 +193,10 @@
   html {
     @apply font-sans;
   }
+}
+
+
+/* Country select dropdown */
+.PhoneInputCountrySelect {
+  @apply bg-white dark:bg-gray-900 text-black dark:text-white;
 }
