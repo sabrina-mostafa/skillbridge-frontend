@@ -33,7 +33,6 @@ export default function BookingSlotStep({
                     tutorId,
                     selectedDate
                 );
-            console.log("slots res:", res);
 
             if (!res.error && res.data) {
                 setSlots(res.data.slots);
@@ -53,9 +52,7 @@ export default function BookingSlotStep({
     }
 
     return (
-
         <div className="space-y-6">
-
             {/* Header */}
             <div>
                 <Button
@@ -73,7 +70,6 @@ export default function BookingSlotStep({
                     Select a Time
                 </h2>
                 <p className="text-muted-foreground mt-1">
-
                     {new Date(selectedDate).toLocaleDateString(
                         undefined,
                         {
@@ -116,6 +112,7 @@ export default function BookingSlotStep({
                                         .toLocaleTimeString([], {
                                             hour: "numeric",
                                             minute: "2-digit",
+                                            timeZone: "UTC",
                                         })}
                                 </div>
 
@@ -132,6 +129,7 @@ export default function BookingSlotStep({
                                         .toLocaleTimeString([], {
                                             hour: "numeric",
                                             minute: "2-digit",
+                                            timeZone: "UTC",
                                         })}
 
                                 </div>
@@ -139,13 +137,8 @@ export default function BookingSlotStep({
                         </button>
 
                     ))}
-
                 </div>
-
             )}
-
         </div>
-
     );
-
 }

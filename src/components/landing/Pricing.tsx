@@ -60,7 +60,7 @@ export default function Pricing() {
 
                                 <div className="mt-8 flex items-end gap-2">
                                     <span className="text-6xl font-black">
-                                        $15+
+                                        ৳500+
                                     </span>
 
                                     <span className="pb-2 text-lg opacity-80">

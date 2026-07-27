@@ -9,6 +9,8 @@ import { bookingClientService } from "@/services/booking/booking.client.service"
 import BookingFilters from "./BookingFilters";
 import { format } from "date-fns";
 import BookingManagerSkeleton from "@/components/skeletons/BookingManagerSkeleton";
+import { BookOpen } from "lucide-react";
+import EmptyState from "@/components/common/EmptyState";
 
 
 
@@ -71,16 +73,16 @@ export default function BookingManager() {
         return <BookingManagerSkeleton />;
     }
 
-    // if (!loading && bookings.length === 0) {
-    //     return (
-    //         <EmptyState
-    //             icon={<BookOpen className="h-8 w-8 text-muted-foreground" />}
-    //             title="No bookings yet"
-    //             description="Once you book a tutor, your bookings will appear here."
-    //         />
-    //     );
-    // }
-
+    if (!loading && bookings.length === 0) {
+        return (
+            <EmptyState
+                icon={<BookOpen className="h-8 w-8 text-muted-foreground" />}
+                title="No bookings yet"
+                description="Once you book a tutor, your bookings will appear here."
+            />
+        );
+    }
+    
 
     return (
         <div className="space-y-8">

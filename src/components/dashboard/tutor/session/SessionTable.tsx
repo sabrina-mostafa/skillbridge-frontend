@@ -126,11 +126,13 @@ export default function SessionTable({
                                                         {start.toLocaleTimeString([], {
                                                             hour: "2-digit",
                                                             minute: "2-digit",
+                                                            timeZone: "UTC",
                                                         })}
                                                         {" - "}
                                                         {end.toLocaleTimeString([], {
                                                             hour: "2-digit",
                                                             minute: "2-digit",
+                                                            timeZone: "UTC",
                                                         })}
                                                     </p>
                                                 </div>

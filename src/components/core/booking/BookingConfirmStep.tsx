@@ -28,6 +28,7 @@ import { toast } from "sonner";
 import { bookingClientService } from "@/services/booking/booking.client.service";
 import { cn } from "@/lib/utils";
 
+
 type Props = {
     tutor: Tutor;
     date: string;
@@ -39,6 +40,7 @@ type Props = {
 const schema = z.object({
     categoryId: z.string().min(1, "Please select a subject"),
 });
+
 
 export default function BookingConfirmStep({
     tutor,
@@ -96,8 +98,8 @@ export default function BookingConfirmStep({
 
     });
 
-    return (
 
+    return (
         <form
             onSubmit={(e) => {
                 e.preventDefault();
@@ -105,7 +107,6 @@ export default function BookingConfirmStep({
             }}
             className="space-y-8"
         >
-
             <Button
                 variant="outline"
                 size="sm"
@@ -133,7 +134,7 @@ export default function BookingConfirmStep({
                         <h3 className="font-semibold text-lg">
                             {tutor.user?.name}
                         </h3>
-                        <p className="text-muted-foreground">
+                        <p className="text-xs text-muted-foreground">
                             {tutor.education}
                         </p>
                     </div>
@@ -170,6 +171,7 @@ export default function BookingConfirmStep({
                         ).toLocaleTimeString([], {
                             hour: "numeric",
                             minute: "2-digit",
+                            timeZone: "UTC",
                         })}
 
                         {" - "}
@@ -179,6 +181,7 @@ export default function BookingConfirmStep({
                         ).toLocaleTimeString([], {
                             hour: "numeric",
                             minute: "2-digit",
+                            timeZone: "UTC",
                         })}
                     </span>
                 </div>

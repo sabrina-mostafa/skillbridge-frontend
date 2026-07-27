@@ -20,7 +20,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-export default function Footer() {
+export default function HomeFooter() {
     return (
         <footer className="">
             {/* CTA */}

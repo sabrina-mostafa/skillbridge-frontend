@@ -5,7 +5,7 @@ import { ShieldCheck } from "lucide-react";
 
 export default function PrivacyHero() {
     return (
-        <section className="border-b bg-gradient-to-b from-primary/5 via-background to-background">
+        <section className="border-b pt-14 bg-gradient-to-b from-primary/5 via-background to-background">
             <div className="mx-auto flex max-w-7xl flex-col items-center px-6 py-24 text-center">
 
                 <motion.div

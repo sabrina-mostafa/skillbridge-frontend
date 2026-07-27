@@ -218,7 +218,7 @@ export default function Footer() {
                         </Link>
 
                         <Link
-                            href="/contact"
+                            href="/#contact"
                             className="hover:text-primary"
                         >
                             Support

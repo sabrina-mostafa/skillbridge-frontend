@@ -67,9 +67,11 @@ export const formatSessionTime = (
   return `${start.toLocaleTimeString([], {
     hour: "2-digit",
     minute: "2-digit",
+    timeZone: "UTC",
   })} - ${end.toLocaleTimeString([], {
     hour: "2-digit",
     minute: "2-digit",
+    timeZone: "UTC",
   })}`;
 };
 

@@ -1,10 +1,16 @@
 import { tutorClientService } from "@/services/tutor/tutor.client.service";
 import { notFound } from "next/navigation";
 import TutorDetailsClient from "../../../../components/core/tutors/TutorDetailsClient";
+import { userServerService } from "@/services/user/user.server.service";
+import { User } from "@/types/user.type";
 
 
 
 export default async function TutorDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+  
+  const session = await userServerService.getSession();
+  const user: User = session?.data?.user;
+
   const { id } = await params;
 
   const res = await tutorClientService.getTutorById(id);
@@ -15,5 +21,5 @@ export default async function TutorDetailsPage({ params }: { params: Promise<{ i
     notFound();
   }
 
-  return <TutorDetailsClient tutor={tutor} />;
+  return <TutorDetailsClient tutor={tutor} user={user} />;
 }

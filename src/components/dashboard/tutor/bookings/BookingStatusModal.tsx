@@ -176,11 +176,13 @@ export default function BookingStatusModal({
                                 {start.toLocaleTimeString([], {
                                     hour: "numeric",
                                     minute: "2-digit",
+                                    timeZone: "UTC",
                                 })}
                                 {" - "}
                                 {end.toLocaleTimeString([], {
                                     hour: "numeric",
                                     minute: "2-digit",
+                                    timeZone: "UTC",
                                 })}
                                 {" • "}
                                 {duration} mins

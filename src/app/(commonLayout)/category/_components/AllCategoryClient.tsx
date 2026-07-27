@@ -6,7 +6,6 @@ import { ArrowRight, Layers, BookOpen, Layers3, Route, Users } from "lucide-reac
 import { AllCategoryProps, CategoryBase, ParentCategory } from "@/types/category.type";
 import Pagination from "@/components/common/Pagination";
 import CategoryFilterBar from "./CategoryFilterBar";
-
 import heroImage from "../../../../../public/category/categoryHero.avif"
 import Image from "next/image";
 
@@ -153,75 +152,94 @@ export default function AllCategoryClient({ allCategories }: { allCategories: Al
                             key={parent.id}
                             href={`/category/${parent.id}`}
                             className="
-                group
-                relative
-                rounded-2xl
-                border
-                bg-card
-                p-6
-                transition-all
-                duration-300
-                hover:-translate-y-1
-                hover:shadow-xl
-                hover:border-indigo-300
-              "
+    group
+    overflow-hidden
+    rounded-2xl
+    border
+    bg-card
+    transition-all
+    duration-300
+    hover:-translate-y-1
+    hover:shadow-xl
+    hover:border-primary/40
+"
                         >
-                            {/* HEADER */}
-                            <div className="flex items-start justify-between">
-                                <div className="flex items-center gap-2">
-                                    <div className="p-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/30">
-                                        <Layers className="w-5 h-5 text-indigo-600" />
+                            {/* Thumbnail */}
+                            {parent.thumbnail && <div className="relative h-52 w-full overflow-hidden">
+                                <Image
+                                    src={parent.thumbnail}
+                                    alt={parent.name}
+                                    fill
+                                    className="object-cover transition duration-500 group-hover:scale-105"
+                                />
+
+                                {/* Dark Overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+                                {/* Category Badge */}
+                                <div className="absolute left-4 top-4">
+                                    <span className="rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-primary shadow">
+                                        Category
+                                    </span>
+                                </div>
+
+                                {/* Title */}
+                                <div className="absolute bottom-4 left-4 right-4">
+                                    <div className="flex items-center gap-2">
+                                        <div className="rounded-lg bg-white/20 p-2 backdrop-blur">
+                                            <Layers className="h-5 w-5 text-white" />
+                                        </div>
+
+                                        <h2 className="text-xl font-bold text-white">
+                                            {parent.name}
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>}
+
+                            {/* Content */}
+                            <div className="p-6">
+                                <p className="line-clamp-2 text-sm text-muted-foreground">
+                                    {parent.shortDesc}
+                                </p>
+
+                                {/* Child Categories */}
+                                <div className="mt-5 flex flex-wrap gap-2">
+                                    {parent.children.slice(0, 4).map((child: CategoryBase) => (
+                                        <span
+                                            key={child.id}
+                                            className="
+            rounded-full
+            bg-primary/10
+            px-3
+            py-1
+            text-xs
+            font-medium
+            text-primary
+            transition
+            group-hover:bg-primary
+            group-hover:text-primary-foreground
+          "
+                                        >
+                                            {child.name}
+                                        </span>
+                                    ))}
+                                </div>
+
+                                {/* Footer */}
+                                <div className="mt-6 flex items-center justify-between border-t pt-4">
+                                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                                        <BookOpen className="h-4 w-4" />
+                                        <span>
+                                            {parent.children.length} Courses
+                                        </span>
                                     </div>
 
-                                    <h2 className="text-xl font-semibold">
-                                        {parent.name}
-                                    </h2>
+                                    <div className="flex items-center gap-1 text-sm font-semibold text-primary">
+                                        Explore
+                                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                                    </div>
                                 </div>
-
-                                <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition" />
-                            </div>
-
-                            {/* DESCRIPTION */}
-                            <p className="text-sm text-muted-foreground mt-4">
-                                Explore structured courses under{" "}
-                                <span className="font-medium text-foreground">
-                                    {parent.name}
-                                </span>
-                            </p>
-
-                            {/* CHILDREN */}
-                            <div className="mt-5 flex flex-wrap gap-2">
-                                {parent.children.slice(0, 3).map((child: CategoryBase) => (
-                                    <span
-                                        key={child.id}
-                                        className="
-                      text-xs
-                      px-3
-                      py-1
-                      rounded-full
-                      bg-muted
-                      text-muted-foreground
-                      group-hover:bg-indigo-50
-                      group-hover:text-primary
-                      border
-                      transition
-                    "
-                                    >
-                                        {child.name}
-                                    </span>
-                                ))}
-                            </div>
-
-                            {/* FOOTER */}
-                            <div className="mt-6 flex items-center justify-between border-t pt-4">
-                                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                                    <BookOpen className="w-4 h-4" />
-                                    {parent.children.length} Courses
-                                </div>
-
-                                <span className="text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition">
-                                    View Details →
-                                </span>
                             </div>
                         </Link>
                     ))}

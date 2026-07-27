@@ -70,7 +70,6 @@ export default function BookingDateStep({
             const res = await bookingClientService.getAvailableDates(
                 tutorId
             );
-            console.log("av res:", res)
 
             if (!res.error && res.data) {
                 setDates(res.data.dates);

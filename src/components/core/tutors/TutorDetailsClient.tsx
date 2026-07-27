@@ -16,15 +16,20 @@ import {
 import { Tutor } from "@/types/tutor.types";
 import { useState } from "react";
 import BookingModal from "../booking/BookingModal";
+import { User } from "@/types/user.type";
+import { USER_ROLES } from "@/constants/user/UserRoles";
+import { useRouter } from "next/navigation";
 
 
 type TutorDetailsClientProps = {
   tutor: Tutor;
+  user: User;
 };
 
 
 export default function TutorDetailsClient({
   tutor,
+  user,
 }: TutorDetailsClientProps) {
 
   const [bookingOpen, setBookingOpen] = useState(false);
@@ -44,6 +49,8 @@ export default function TutorDetailsClient({
       )
       .slice(0, 5);
 
+  const router = useRouter();
+
   return (
     <section className="py-16 mt-16">
       <div className="max-w-[1440px] mx-auto px-6">
@@ -52,7 +59,6 @@ export default function TutorDetailsClient({
 
           {/* LEFT */}
           <div className="lg:col-span-2 space-y-8 min-w-0">
-
             {/* HERO */}
             <div className="border p-8 flex md:flex-row flex-col rounded-3xl overflow-hidden bg-card">
               <div className="relative w-full h-80">
@@ -409,10 +415,9 @@ export default function TutorDetailsClient({
           {/* RIGHT SIDEBAR */}
           <div>
             <div className="sticky top-24 border rounded-3xl p-6 bg-card">
-
               <div className="text-center mb-6">
                 <h3 className="text-4xl font-bold text-primary">
-                  ${tutor.hourlyRate || 20}
+                  ৳{tutor.hourlyRate || 20}
                 </h3>
 
                 <p className="text-muted-foreground">
@@ -452,7 +457,14 @@ export default function TutorDetailsClient({
                 Book Session
               </button>
 
-              <button className="w-full cursor-pointer h-12 rounded-xl border mt-3 font-medium">
+              <button
+                onClick={() => {
+                  if (user?.role && user?.role !== USER_ROLES.ADMIN) {
+                    router.push(`/dashboard/${user?.role.toLowerCase()}/messages`);
+                  }
+                }}
+                disabled={!user || !user?.role || user?.role === USER_ROLES.ADMIN}
+                className="w-full cursor-pointer h-12 rounded-xl border mt-3 font-medium">
                 <MessageCircle className="w-4 h-4 inline mr-2" />
                 Send Message
               </button>

@@ -300,66 +300,97 @@ export default function CategoryCoursesClient({ categoryResponse }: { categoryRe
                 </div>
 
                 {children.length > 0 ? (
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {children.map((child: ChildCategory) => (
                             <Link
                                 key={child.id}
                                 href={`/course/${child.id}`}
                                 className="
-      group
-      rounded-2xl
-      border
-      bg-card
-      p-6
-      transition-all
-      duration-300
-      hover:-translate-y-1
-      hover:shadow-xl
-      hover:border-indigo-300
-    "
+    group
+    overflow-hidden
+    rounded-2xl
+    border
+    bg-card
+    transition-all
+    duration-300
+    hover:-translate-y-1
+    hover:shadow-xl
+    hover:border-primary/40
+  "
                             >
-                                <div className="flex items-center justify-between">
-                                    <div className="h-12 w-12 rounded-xl border bg-indigo-100 dark:bg-indigo-950/40 flex items-center justify-center">
-                                        <BookOpen className="h-6 w-6 text-primary" />
+                                {/* Thumbnail */}
+                                {child.thumbnail && <div className="relative h-48 w-full overflow-hidden">
+                                    <Image
+                                        src={child.thumbnail}
+                                        alt={child.name}
+                                        fill
+                                        className="object-cover transition duration-500 group-hover:scale-105"
+                                    />
+
+                                    {/* Overlay */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+                                    {/* Course Badge */}
+                                    <div className="absolute left-4 top-4">
+                                        <span className="rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-primary shadow">
+                                            Course
+                                        </span>
                                     </div>
 
-                                    <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-indigo-600 transition-colors" />
-                                </div>
+                                    {/* Course Name */}
+                                    <div className="absolute bottom-4 left-4 right-4">
+                                        <div className="flex items-center gap-2">
+                                            <div className="rounded-lg bg-white/20 p-2 backdrop-blur">
+                                                <BookOpen className="h-5 w-5 text-white" />
+                                            </div>
 
-                                <h3 className="mt-5 text-lg font-semibold">
-                                    {child.name}
-                                </h3>
+                                            <h3 className="text-xl font-bold text-white line-clamp-2">
+                                                {child.name}
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>}
 
-                                <p className="mt-2 text-sm text-muted-foreground">
-                                    Learn {child.name} with qualified tutors and personalized guidance.
-                                </p>
+                                {/* Content */}
+                                <div className="p-6">
+                                    <p className="line-clamp-2 text-sm text-muted-foreground">
+                                        {child.shortDesc}
+                                    </p>
 
-                                <div className="mt-5 flex flex-wrap gap-2">
-                                    <span className="rounded-full bg-indigo-50 border text-primary dark:bg-indigo-950/30 px-3 py-1 text-xs font-medium">
-                                        {(child.tutors?.length || 0)} Tutors
-                                    </span>
+                                    {/* Stats */}
+                                    <div className="mt-5 flex flex-wrap gap-2">
+                                        <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+                                            👨‍🏫 {child.tutors?.length ?? 0} Tutors
+                                        </span>
 
-                                    <span className="rounded-full border bg-emerald-50 text-emerald-600 dark:bg-emerald-950/30 px-3 py-1 text-xs font-medium">
-                                        {(child.students?.length || 0)} Students
-                                    </span>
-                                </div>
-
-                                <div className="mt-5 flex items-center justify-between border-t pt-4">
-                                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                                        <Layers className="h-4 w-4" />
-
-                                        Course
+                                        <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-medium text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400">
+                                            🎓 {child.students?.length ?? 0} Students
+                                        </span>
                                     </div>
 
-                                    {child.tutors?.length > 0 ? (
-                                        <span className="text-xs font-medium text-emerald-600">
-                                            Tutors Available
-                                        </span>
-                                    ) : (
-                                        <span className="text-xs font-medium text-amber-600">
-                                            Coming Soon
-                                        </span>
-                                    )}
+                                    {/* Footer */}
+                                    <div className="mt-6 flex items-center justify-between border-t pt-4">
+                                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                                            <Layers className="h-4 w-4" />
+                                            <span>Course</span>
+                                        </div>
+
+                                        {child.tutors?.length ? (
+                                            <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400">
+                                                Tutors Available
+                                            </span>
+                                        ) : (
+                                            <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700 dark:bg-amber-950/40 dark:text-amber-400">
+                                                Coming Soon
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    {/* CTA */}
+                                    <div className="mt-5 flex items-center justify-end text-sm font-semibold text-primary">
+                                        Explore Course
+                                        <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                                    </div>
                                 </div>
                             </Link>
                         ))}

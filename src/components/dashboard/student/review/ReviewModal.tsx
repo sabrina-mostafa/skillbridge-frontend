@@ -31,11 +31,6 @@ export default function ReviewModal({
                     ? "Edit Review"
                     : "Review Your Tutor"
             }
-            // description={
-            //     isEditing
-            //         ? `Update your feedback for ${booking.tutor.user.name}.`
-            //         : `Share your learning experience with ${booking.tutor.user.name}.`
-            // }
             size="lg"
         >
             <ReviewForm

@@ -44,23 +44,22 @@ export default function ReviewDetailsModal({
                 {/* Participants */}
                 <div className="rounded-2xl border bg-gradient-to-br from-primary/[0.04] via-background to-primary/[0.02] px-4 py-6">
                     <div className="flex flex-col gap-6 md:flex-row md:items-center">
-
                         {/* Student */}
                         <div className="flex flex-1 items-center gap-4 rounded-xl border bg-background/70 p-5 backdrop-blur-sm">
                             <UserAvatar
                                 name={review.student.user.name}
                                 image={review.student.user.image}
-                                className="h-16 w-16"
+                                className="h-14 w-14"
                             />
 
                             <div className="min-w-0">
-                                <span className="mb-1 inline-flex rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wide text-primary">
+                                <span className="mb-1 inline-flex rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wide text-primary">
                                     Student
                                 </span>
-                                <h3 className="truncate text-lg font-semibold">
+                                <h3 className="truncate text-sm font-semibold">
                                     {review.student.user.name}
                                 </h3>
-                                <p className="text-sm text-muted-foreground">
+                                <p className="text-xs text-muted-foreground">
                                     Review Author
                                 </p>
                             </div>
@@ -78,28 +77,26 @@ export default function ReviewDetailsModal({
                             <UserAvatar
                                 name={review.tutor.user.name}
                                 image={review.tutor.user.image}
-                                className="h-16 w-16"
+                                className="h-14 w-14"
                             />
 
                             <div className="min-w-0">
-                                <span className="mb-1 inline-flex rounded-full bg-emerald-500/10 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wide text-emerald-600 dark:text-emerald-400">
+                                <span className="mb-1 inline-flex rounded-full bg-emerald-500/10 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wide text-emerald-600 dark:text-emerald-400">
                                     Tutor
                                 </span>
-                                <h3 className="truncate text-lg font-semibold">
+                                <h3 className="truncate text-sm font-semibold">
                                     {review.tutor.user.name}
                                 </h3>
-                                <p className="truncate text-sm text-muted-foreground">
-                                    {review.tutor.education}
+                                <p className="text-xs text-muted-foreground">
+                                    Course Instructor
                                 </p>
                             </div>
                         </div>
-
                     </div>
                 </div>
 
                 {/* Details */}
                 <div className="grid gap-4 md:grid-cols-2">
-
                     <div className="rounded-xl border p-5">
                         <div className="mb-2 flex items-center gap-2">
                             <GraduationCap className="h-5 w-5 text-primary" />
@@ -163,7 +160,6 @@ export default function ReviewDetailsModal({
 
                         <Badge>Published</Badge>
                     </div>
-
                 </div>
 
                 {/* Review */}
@@ -178,7 +174,7 @@ export default function ReviewDetailsModal({
 
                     <div className="rounded-2xl border bg-muted/30 p-6">
                         {review.comment ? (
-                            <p className="leading-8 text-sm">
+                            <p className="leading-6 text-sm">
                                 &ldquo;{review.comment}&rdquo;
                             </p>
                         ) : (
@@ -194,7 +190,7 @@ export default function ReviewDetailsModal({
                     <Button
                         variant="outline"
                         onClick={() => onOpenChange(false)}
-                        className="min-w-28"
+                        className="min-w-28 cursor-pointer"
                     >
                         Close
                     </Button>

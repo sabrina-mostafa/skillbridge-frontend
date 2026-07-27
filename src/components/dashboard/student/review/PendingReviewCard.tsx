@@ -64,11 +64,13 @@ export default function PendingReviewCard({
                     {start.toLocaleTimeString([], {
                         hour: "2-digit",
                         minute: "2-digit",
+                        timeZone: "UTC",
                     })}
                     {" - "}
                     {end.toLocaleTimeString([], {
                         hour: "2-digit",
                         minute: "2-digit",
+                        timeZone: "UTC",
                     })}
                 </div>
             </div>

@@ -1,6 +1,5 @@
 import Contact from "@/components/landing/Contact";
 import BenefitsSection from "@/components/landing/BenefitsSection";
-import Footer from "@/components/landing/Footer";
 import { Hero } from "@/components/landing/Hero";
 import { LearningStyles } from "@/components/landing/LearningStyles";
 import Pricing from "@/components/landing/Pricing";
@@ -26,7 +25,6 @@ export default function Home() {
         <TopInstructors />
         <Pricing />
         <Contact />
-        <Footer />
       </main>
 
       <ScrollToTopButton />

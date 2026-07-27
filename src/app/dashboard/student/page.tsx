@@ -30,7 +30,6 @@ export default async function StudentDashboardPage() {
 
   return (
     <div className="space-y-6">
-
       <DashboardHeaderSection
         title="Student Dashboard"
         description={`Welcome back, ${user.name}. Continue your learning journey.`}

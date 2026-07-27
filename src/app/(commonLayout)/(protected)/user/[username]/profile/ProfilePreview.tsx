@@ -169,7 +169,7 @@ export default function ProfilePreview({
                             <StatCard
                                 icon={<BadgeDollarSign className="size-4 text-primary" />}
                                 label="Hourly Rate"
-                                value={`$${data?.profile?.hourlyRate || 0}`}
+                                value={`৳${data?.profile?.hourlyRate || 0}`}
                                 theme={theme}
                             />
 

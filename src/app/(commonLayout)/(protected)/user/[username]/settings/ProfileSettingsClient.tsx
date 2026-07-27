@@ -289,7 +289,7 @@ export default function ProfileSettingsClient({ user, profile, categories: avail
                                                 <form.Field name="experience">
                                                     {(field) => (
                                                         <div>
-                                                            <label className="text-sm font-medium">Experience</label>
+                                                            <label className="text-sm font-medium">Experience(Year)</label>
                                                             <Textarea
                                                                 rows={5}
                                                                 value={field.state.value}
@@ -308,7 +308,7 @@ export default function ProfileSettingsClient({ user, profile, categories: avail
                                                 <form.Field name="hourlyRate">
                                                     {(field) => (
                                                         <div>
-                                                            <label className="text-sm font-medium">Hourly Rate</label>
+                                                            <label className="text-sm font-medium">Hourly Rate(৳)</label>
                                                             <Input
                                                                 className="mt-1 h-10 text-gray-500 dark:text-gray-400/90"
                                                                 type="number"

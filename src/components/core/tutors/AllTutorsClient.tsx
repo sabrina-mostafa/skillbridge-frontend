@@ -30,6 +30,7 @@ type AllTutorsClientProps = {
 export default function AllTutorsClient({ allTutors, meta, allTutorsCount }: AllTutorsClientProps) {
 
     const { setQuery } = useQueryParams();
+    const tutors = allTutors ?? [];
 
 
     return (
@@ -44,15 +45,38 @@ export default function AllTutorsClient({ allTutors, meta, allTutorsCount }: All
                 <TutorFilterBar />
 
                 {/* ================= GRID ================= */}
-                <div className="px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
-                    {allTutors.map((tutor: Tutor) => (
-                        <Link
-                            key={tutor.id}
-                            href={`/tutors/${tutor.id}`}
-                            className="group"
-                        >
-                            <div
-                                className="
+                <div className="px-6">
+                    {tutors.length === 0 ? (
+                        <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed bg-muted/20 px-8 py-20 text-center">
+                            <Users className="mb-5 h-14 w-14 text-muted-foreground" />
+
+                            <h3 className="text-2xl font-semibold">
+                                No Tutors Available Yet
+                            </h3>
+
+                            <p className="mt-3 max-w-md text-sm text-muted-foreground">
+                                We&apos;re currently expanding our community of expert tutors.
+                                Check back soon to discover qualified instructors for your
+                                learning journey.
+                            </p>
+
+                            <Link
+                                href="/category"
+                                className="mt-8 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition hover:opacity-90"
+                            >
+                                Browse Categories
+                            </Link>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+                            {tutors.map((tutor: Tutor) => (
+                                <Link
+                                    key={tutor.id}
+                                    href={`/tutors/${tutor.id}`}
+                                    className="group"
+                                >
+                                    <div
+                                        className="
                                     relative
                                     rounded-2xl
                                     border
@@ -64,85 +88,87 @@ export default function AllTutorsClient({ allTutors, meta, allTutorsCount }: All
                                     hover:shadow-xl
                                     hover:border-primary/30
                                 "
-                            >
+                                    >
 
-                                {/* IMAGE */}
-                                <div className="relative h-52 w-full overflow-hidden">
-                                    <Image
-                                        src={tutor.user?.image || "/placeholder.png"}
-                                        alt={tutor.user?.name || "Tutor"}
-                                        fill
-                                        className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
-                                    />
+                                        {/* IMAGE */}
+                                        <div className="relative h-52 w-full overflow-hidden">
+                                            <Image
+                                                src={tutor.user?.image || "/placeholder.png"}
+                                                alt={tutor.user?.name || "Tutor"}
+                                                fill
+                                                className="object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                                            />
 
-                                    {/* subtle overlay */}
-                                    <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent" />
-                                </div>
-
-                                {/* CONTENT */}
-                                <div className="p-5 space-y-4">
-
-                                    {/* NAME */}
-                                    <div>
-                                        <h2 className="text-xl font-semibold group-hover:text-primary transition">
-                                            {tutor.user?.name}
-                                        </h2>
-
-                                        <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
-                                            {tutor.bio}
-                                        </p>
-                                    </div>
-
-                                    {/* RATING */}
-                                    <div className="flex items-center justify-between">
-                                        <div className="flex items-center gap-1 text-sm">
-                                            <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-                                            <span className="font-semibold">
-                                                {tutor.avgRating?.toFixed(1) || "0.0"}
-                                            </span>
-                                            <span className="text-muted-foreground">
-                                                ({tutor.totalReviews})
-                                            </span>
+                                            {/* subtle overlay */}
+                                            <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent" />
                                         </div>
 
-                                        {tutor.isFeatured && (
-                                            <span className="text-xs px-2 py-1 rounded-full bg-yellow-100 text-yellow-700">
-                                                Featured
-                                            </span>
-                                        )}
-                                    </div>
+                                        {/* CONTENT */}
+                                        <div className="p-5 space-y-4">
 
-                                    {/* STATS */}
-                                    <div className="grid grid-cols-3 gap-2 pt-4 border-t text-xs text-muted-foreground">
+                                            {/* NAME */}
+                                            <div>
+                                                <h2 className="text-xl font-semibold group-hover:text-primary transition">
+                                                    {tutor.user?.name}
+                                                </h2>
 
-                                        <div className="flex flex-col items-center">
-                                            <Users className="w-4 h-4 mb-1" />
-                                            <span className="font-medium text-foreground">Students</span>
-                                            <span>20+</span>
+                                                <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
+                                                    {tutor.bio}
+                                                </p>
+                                            </div>
+
+                                            {/* RATING */}
+                                            <div className="flex items-center justify-between">
+                                                <div className="flex items-center gap-1 text-sm">
+                                                    <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                                                    <span className="font-semibold">
+                                                        {tutor.avgRating?.toFixed(1) || "0.0"}
+                                                    </span>
+                                                    <span className="text-muted-foreground">
+                                                        ({tutor.totalReviews})
+                                                    </span>
+                                                </div>
+
+                                                {tutor.isFeatured && (
+                                                    <span className="text-xs px-2 py-1 rounded-full bg-yellow-100 text-yellow-700">
+                                                        Featured
+                                                    </span>
+                                                )}
+                                            </div>
+
+                                            {/* STATS */}
+                                            <div className="grid grid-cols-3 gap-2 pt-4 border-t text-xs text-muted-foreground">
+
+                                                <div className="flex flex-col items-center">
+                                                    <Users className="w-4 h-4 mb-1" />
+                                                    <span className="font-medium text-foreground">Students</span>
+                                                    <span>20+</span>
+                                                </div>
+
+                                                <div className="flex flex-col items-center">
+                                                    <BarChart className="w-4 h-4 mb-1" />
+                                                    <span className="font-medium text-foreground">Exp</span>
+                                                    <span>{tutor.experience}</span>
+                                                </div>
+
+                                                <div className="flex flex-col items-center">
+                                                    <Clock className="w-4 h-4 mb-1" />
+                                                    <span className="font-medium text-foreground">Rate</span>
+                                                    <span>{tutor.hourlyRate}/hr</span>
+                                                </div>
+
+                                            </div>
+
+                                            {/* CTA hint */}
+                                            <div className="pt-2 text-xs text-center text-primary opacity-0 group-hover:opacity-100 transition">
+                                                View Profile →
+                                            </div>
                                         </div>
-
-                                        <div className="flex flex-col items-center">
-                                            <BarChart className="w-4 h-4 mb-1" />
-                                            <span className="font-medium text-foreground">Exp</span>
-                                            <span>{tutor.experience}</span>
-                                        </div>
-
-                                        <div className="flex flex-col items-center">
-                                            <Clock className="w-4 h-4 mb-1" />
-                                            <span className="font-medium text-foreground">Rate</span>
-                                            <span>{tutor.hourlyRate}/hr</span>
-                                        </div>
-
                                     </div>
-
-                                    {/* CTA hint */}
-                                    <div className="pt-2 text-xs text-center text-primary opacity-0 group-hover:opacity-100 transition">
-                                        View Profile →
-                                    </div>
-                                </div>
-                            </div>
-                        </Link>
-                    ))}
+                                </Link>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
 

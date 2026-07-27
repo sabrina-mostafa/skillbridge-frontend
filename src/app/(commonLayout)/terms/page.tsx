@@ -1,11 +1,10 @@
-import Footer from "@/components/common/Footer";
 import SectionHeader from "@/components/common/SectionHeader";
 
 
 export default function TermsPage() {
     return (
-        <div className="mt-14">
-            <section className="border-b bg-gradient-to-b from-primary/5 to-background">
+        <div>
+            <section className="border-b pt-14 bg-gradient-to-b from-primary/5 to-background">
                 <div className="mx-auto max-w-4xl px-6 py-20">
                     <SectionHeader
                         // centered
@@ -147,8 +146,6 @@ export default function TermsPage() {
                     </div>
                 </div>
             </section>
-
-            <Footer />
         </div>
     );
 }

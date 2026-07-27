@@ -30,7 +30,7 @@ export default function UserAvatar({
           src={image}
           alt={name}
           fill
-          className="rounded-full object-cover border"
+          className="rounded-full object-cover object-top border"
         />
       </div>
     );
