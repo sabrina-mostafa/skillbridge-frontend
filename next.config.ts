@@ -11,14 +11,14 @@ const nextConfig: NextConfig = {
     ],
   },
   /* Sends the frontend cookies or requests to the backend */
-  async rewrites() {
-    return [
-      {
-        source: "/api/auth/:path*",
-        destination: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/:path*`,
-      },
-    ];
-  },
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: "/api/auth/:path*",
+  //       destination: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/:path*`,
+  //     },
+  //   ];
+  // },
 };
 
 export default nextConfig;
