@@ -1,5 +1,5 @@
 import AllTutorsClient from "@/components/core/tutors/AllTutorsClient";
-import { tutorClientService } from "@/services/tutor/tutor.client.service";
+import { tutorServerService } from "@/services/tutor/tutor.server.service";
 
 
 export default async function TutorsPage({
@@ -19,9 +19,9 @@ export default async function TutorsPage({
 
   const { isFeatured, course, searchTerm, minRating, minPrice, maxPrice, page, limit } = await searchParams;
 
-  const filteredRes = await tutorClientService.getAllTutors({ isFeatured, course, searchTerm, minRating, minPrice, maxPrice, page, limit });
+  const filteredRes = await tutorServerService.getAllTutors({ isFeatured, course, searchTerm, minRating, minPrice, maxPrice, page, limit });
 
-  const allRes = await tutorClientService.getAllTutors({});
+  const allRes = await tutorServerService.getAllTutors({});
 
 
   return (

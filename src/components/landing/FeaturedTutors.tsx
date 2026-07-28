@@ -1,14 +1,14 @@
-import { tutorClientService } from "@/services/tutor/tutor.client.service";
+import { tutorServerService } from "@/services/tutor/tutor.server.service";
 import FeaturedTutorsClient from "./FeaturedTutorsClient";
 
 
 export default async function FeaturedTutors() {
   const [featuredTutorsRes, allTutorsRes] = await Promise.all([
-    tutorClientService.getAllTutors({
+    tutorServerService.getAllTutors({
       isFeatured: "true",
       limit: "4",
     }),
-    tutorClientService.getAllTutors(),
+    tutorServerService.getAllTutors(),
   ]);
 
 

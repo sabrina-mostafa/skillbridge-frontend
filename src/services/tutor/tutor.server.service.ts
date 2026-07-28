@@ -6,18 +6,17 @@ import { cookies } from "next/headers";
 const API_URL = env.API_URL;
 
 
-interface GetTutorParams {
+export interface GetTutorParams {
     isFeatured?: string;
-    status?: string;
     course?: string;
     searchTerm?: string;
 
-    minRating?: number;
-    minPrice?: number;
-    maxPrice?: number;
+    minRating?: string;
+    minPrice?: string;
+    maxPrice?: string;
 
-    page?: number;
-    limit?: number;
+    page?: string;
+    limit?: string;
 
     sortBy?: string;
     sortOrder?: "asc" | "desc";
@@ -116,5 +115,41 @@ export const tutorServerService = {
         });
 
         return await res.json();
+    },
+
+    getTutorById: async (tutorId: string) => {
+        const cookieStore = await cookies();
+
+        try {
+            const res = await fetch(`${API_URL}/tutors/${tutorId}`,
+                {
+                    method: "GET",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Cookie: cookieStore.toString()
+                    },
+                }
+            );
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                throw new Error(
+                    data?.message ||
+                    "Failed to fetch student profile"
+                );
+            }
+
+            return { data: data, error: null };
+
+        } catch (error) {
+            return {
+                data: null,
+                error: error instanceof Error
+                    ? error
+                    : new Error("Unknown error"),
+            };
+        }
     },
 };

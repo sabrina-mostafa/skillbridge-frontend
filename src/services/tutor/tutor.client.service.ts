@@ -40,52 +40,6 @@ export interface UpdateTutorPayload {
 
 
 export const tutorClientService = {
-    getAllTutors: async (params?: GetTutorParams) => {
-        try {
-            const url = new URL(`${API_URL}/tutors`);
-
-            if (params) {
-                Object.entries(params).forEach(([key, value]) => {
-                    if (value !== null && value !== undefined && value !== "") {
-                        url.searchParams.append(key, String(value));
-                    }
-                });
-            }
-
-            const res = await fetch(url.toString(), {
-                // next: { revalidate: 60 },
-            });
-
-            if (!res.ok) {
-                return { data: null, error: "Failed to fetch tutors" };
-            }
-            const result = await res.json();
-
-            return { data: result, error: null };
-
-        } catch (error) {
-            return {
-                data: null,
-                error: "Something went wrong",
-            };
-        }
-    },
-
-    getTutorById: async (tutorId: string) => {
-        try {
-            // console.log("tutorId", tutorId);
-
-            const res = await fetch(`${API_URL}/tutors/${tutorId}`);
-
-            const data = await res.json();
-
-            return { data: data, error: null };
-
-        } catch (err) {
-            return { data: null, error: { message: "Something Went Wrong!" } };
-        }
-    },
-
     createProfile: async (payload: CreateTutorPayload) => {
         try {
             const res = await fetch(
