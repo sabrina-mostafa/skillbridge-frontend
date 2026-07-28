@@ -9,7 +9,6 @@ const API_URL = "/api";
 export const contactService = {
 
     submitContactForm: async function (payload: ContactFormData) {
-        console.log("payload:", payload)
         try {
             const res = await fetch(`${API_URL}/admin/contact`, {
                 method: "POST",

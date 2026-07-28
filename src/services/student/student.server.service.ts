@@ -83,7 +83,6 @@ export const studentServerService = {
         categories?: string[];
     }) => {
         try {
-            console.log("studntId----:", studentId);
             const cookieStore = await cookies();
             const res = await fetch(`${API_URL}/students/${studentId}`, {
                 method: "PATCH",

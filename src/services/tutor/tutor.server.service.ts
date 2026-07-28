@@ -96,25 +96,48 @@ export const tutorServerService = {
 
     getAllTutors: async (query?: GetTutorParams) => {
         const cookieStore = await cookies();
+        
+        try {
+            const url = new URL(`${API_URL}/tutors`);
 
-        const url = new URL(`${API_URL}/tutors`);
+            if (query) {
+                Object.entries(query).forEach(([key, value]) => {
+                    if (value !== null && value !== undefined && value !== "") {
+                        url.searchParams.append(key, String(value));
+                    }
+                });
+            }
 
-        if (query) {
-            Object.entries(query).forEach(([key, value]) => {
-                if (value !== null && value !== undefined && value !== "") {
-                    url.searchParams.append(key, String(value));
+            const res = await fetch(url.toString(),
+                {
+                    method: "GET",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Cookie: cookieStore.toString()
+                    },
                 }
-            });
+            );
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                throw new Error(
+                    data?.message ||
+                    "Failed to fetch student profile"
+                );
+            }
+
+            return { data: data, error: null };
+
+        } catch (error) {
+            return {
+                data: null,
+                error: error instanceof Error
+                    ? error
+                    : new Error("Unknown error"),
+            };
         }
-
-        const res = await fetch(url.toString(), {
-            headers: {
-                Cookie: cookieStore.toString(),
-            },
-            cache: "no-store",
-        });
-
-        return await res.json();
     },
 
     getTutorById: async (tutorId: string) => {

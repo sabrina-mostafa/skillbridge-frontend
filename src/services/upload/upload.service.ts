@@ -49,7 +49,7 @@ export const uploadService = {
             );
         }
 
-        console.log("data from upload img service:", data);
+        // console.log("data from upload img service:", data);
 
         return data;
     },
