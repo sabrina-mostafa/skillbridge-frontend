@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { Toaster } from "sonner";
+import { userServerService } from "@/services/user/user.server.service";
+import { User } from "@/types/user.type";
 
 
 const geistSans = Geist({
@@ -45,6 +47,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const session = await userServerService.getSession();
+  const user: User = session?.data?.user;
+
+  console.log("session:", session);
+  console.log("user:", user);
 
   return (
     <html
