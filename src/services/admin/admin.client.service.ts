@@ -127,7 +127,7 @@ export const adminClientService = {
         });
 
         const response = await fetch(
-            `${process.env.NEXT_PUBLIC_API_URL}/admin/reports?${params.toString()}`,
+            `${API_URL}/admin/reports?${params.toString()}`,
             {
                 credentials: "include",
                 cache: "no-store",

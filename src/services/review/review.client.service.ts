@@ -1,7 +1,8 @@
-import { env } from "@/env";
+// import { env } from "@/env";
 import { Review, ReviewResponse } from "@/types/review.type";
 
-const API_URL = env.NEXT_PUBLIC_API_URL;
+// const API_URL = env.NEXT_PUBLIC_API_URL;
+const API_URL = "/api";
 
 export type CreateReviewPayload = {
     bookingId: string;

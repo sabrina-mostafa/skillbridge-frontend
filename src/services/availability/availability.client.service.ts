@@ -1,12 +1,12 @@
-import { env } from "@/env";
+// import { env } from "@/env";
 import {
     Availability,
     CreateAvailabilityPayload,
 } from "@/types/availability.type";
 
 
-const API_URL = env.NEXT_PUBLIC_API_URL;
-
+// const API_URL = env.NEXT_PUBLIC_API_URL;
+const API_URL = "/api";
 
 export const availabilityClientService = {
     createAvailability: async (payload: CreateAvailabilityPayload) => {

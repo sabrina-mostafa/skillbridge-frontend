@@ -1,6 +1,7 @@
-import { env } from "@/env";
+// import { env } from "@/env";
 
-const API_URL = env.NEXT_PUBLIC_API_URL;
+// const API_URL = env.NEXT_PUBLIC_API_URL;
+const API_URL = "/api";
 
 
 // for filtering
@@ -120,7 +121,6 @@ export const tutorClientService = {
 
     updateProfile: async (tutorId: string, payload: UpdateTutorPayload) => {
         try {
-            console.log("tutorId:", tutorId);
             const res = await fetch(`${API_URL}/tutors/${tutorId}`, {
                 method: "PATCH",
                 credentials: "include",

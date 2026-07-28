@@ -1,11 +1,12 @@
 import { SessionStatus } from "@/constants/booking/BookingSessionStatus";
 import { BookingStatus, StudentBookingStatus, TutorBookingStatus } from "@/constants/booking/BookingStatus";
-import { env } from "@/env";
+// import { env } from "@/env";
 import { AvailableDatesResponse, AvailableSlotsResponse } from "@/types/availability.type";
 import { BookingResponse } from "@/types/booking.types";
 
 
-const API_URL = env.NEXT_PUBLIC_API_URL;
+// const API_URL = env.NEXT_PUBLIC_API_URL;
+const API_URL = "/api";
 
 export type BookingFilters = {
     page?: number;

@@ -1,8 +1,9 @@
-import { env } from "@/env";
+// import { env } from "@/env";
 import { Contact, GetContactsResponse } from "@/types/contact.type";
 import { Conversation, ConversationResponse, CreateConversationPayload } from "@/types/conversation.type";
 
-const API_URL = env.NEXT_PUBLIC_API_URL;
+// const API_URL = env.NEXT_PUBLIC_API_URL;
+const API_URL = "/api";
 
 export type ConversationFilters = {
     page?: number;

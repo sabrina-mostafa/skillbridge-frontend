@@ -10,10 +10,10 @@ export const uploadService = {
 
     uploadImage: async (file: File) => {
 
-        console.log({
-            CLOUD_NAME,
-            UPLOAD_PRESET,
-        });
+        // console.log({
+        //     CLOUD_NAME,
+        //     UPLOAD_PRESET,
+        // });
 
         const formData = new FormData();
 

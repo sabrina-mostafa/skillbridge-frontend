@@ -1,6 +1,7 @@
-import { env } from "@/env";
+// import { env } from "@/env";
 
-const API_URL = env.NEXT_PUBLIC_API_URL;
+// const API_URL = env.NEXT_PUBLIC_API_URL;
+const API_URL = "/api";
 
 
 export type createCategoryPayload = {

@@ -1,8 +1,9 @@
-import { env } from "@/env"
+// import { env } from "@/env"
 import { ContactFormData } from "@/types/public-contact-form.type";
 
 
-const API_URL = env.API_URL;
+// const API_URL = env.API_URL;
+const API_URL = "/api";
 
 
 export const contactService = {
