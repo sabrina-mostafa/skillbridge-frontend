@@ -24,9 +24,9 @@ import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { Textarea } from "@/components/ui/textarea";
 import contactImage from "../../../public/landing/contact2.jpeg";
-import { createContactMessage } from "@/actions/contact.action";
 import { contactSchema } from "@/schemas/public-contactMessage.schema";
 import { ContactFormData } from "@/types/public-contact-form.type";
+import { contactService } from "@/services/contact.service";
 
 
 
@@ -49,7 +49,7 @@ export default function Contact() {
       const toastId = toast.loading("Sending...");
 
       try {
-        const res = await createContactMessage(value);
+        const res = await contactService.submitContactForm(value);
 
         if (res.error) {
           toast.error(res.error.message, {
