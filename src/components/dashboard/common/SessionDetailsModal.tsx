@@ -75,21 +75,21 @@ export default function SessionDetailsModal({
                 </h3>
 
                 <div className="border p-4 rounded-2xl flex items-start gap-4">
-                    <UserAvatar
-                        name={person.name}
-                        image={person.image}
-                        className="size-14"
-                    />
-
-                    <div className="grid sm:grid-cols-2 gap-6">
-                        <div>
-                            <h4 className="font-semibold text-lg">
-                                {person.name}
-                            </h4>
-
-                            <p className="text-muted-foreground">
-                                {person.email}
-                            </p>
+                    <div className="grid gap-2">
+                        <div className="flex gap-2">
+                            <UserAvatar
+                                name={person.name}
+                                image={person.image}
+                                className="size-14"
+                            />
+                            <div>
+                                <h4 className="font-semibold text-lg">
+                                    {person.name}
+                                </h4>
+                                <p className="text-muted-foreground">
+                                    {person.email}
+                                </p>
+                            </div>
                         </div>
 
                         {viewerRole === USER_ROLES.STUDENT && (
