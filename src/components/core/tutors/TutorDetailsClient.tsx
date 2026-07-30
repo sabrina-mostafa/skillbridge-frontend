@@ -318,9 +318,10 @@ export default function TutorDetailsClient({
                           <Image
                             src={review.student.user.image || "/placeholder.png"}
                             alt={review.student.user.name}
-                            fill
-                            className="object-cover"
-                            sizes="48px"
+                            width={48}
+                            height={48}
+                            className="h-12 w-12 rounded-full object-cover border"
+                            priority={false}
                           />
                         </div>
 
@@ -346,8 +347,8 @@ export default function TutorDetailsClient({
                         <Star
                           key={i}
                           className={`h-4 w-4 ${i < review.rating
-                              ? "fill-yellow-500 text-yellow-500"
-                              : "text-muted-foreground/30"
+                            ? "fill-yellow-500 text-yellow-500"
+                            : "text-muted-foreground/30"
                             }`}
                         />
                       ))}
