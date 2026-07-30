@@ -102,7 +102,7 @@ export function LoginModal({ open, setOpen, openRegister, }: LoginModalProps) {
 
       await authClient.signIn.social({
         provider: "google",
-        callbackURL: `${FRONTEND_URL}/auth/callback`,
+        callbackURL: `/auth/callback`,
       });
     } finally {
       setIsGoogleLoading(false);
