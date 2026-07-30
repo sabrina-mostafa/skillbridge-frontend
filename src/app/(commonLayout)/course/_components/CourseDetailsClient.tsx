@@ -15,6 +15,7 @@ import {
 import { CategoryBase, CategoryDetails } from "@/types/category.type";
 import { TutorCategory } from "@/types/tutor.types";
 import learning from "../../../../../public/category/learning.avif"
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 
 
@@ -222,12 +223,13 @@ export default function CourseDetailsClient({ course }: { course: CategoryDetail
                         </p>
                     </div>
                 ) : (
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {tutors.map((item: TutorCategory) => (
-                            <Link
-                                key={item.tutor.id}
-                                href={`/tutors/${item.tutor.id}`}
-                                className="
+                    <ScrollArea className="max-h-150 pr-4">
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {tutors.map((item: TutorCategory) => (
+                                <Link
+                                    key={item.tutor.id}
+                                    href={`/tutors/${item.tutor.id}`}
+                                    className="
         group relative
         rounded-2xl
         border bg-card
@@ -237,64 +239,65 @@ export default function CourseDetailsClient({ course }: { course: CategoryDetail
         hover:shadow-xl
         hover:border-primary
       "
-                            >
-                                {/* TOP HEADER */}
-                                <div className="flex items-start justify-between">
-                                    <div>
-                                        <h3 className="text-lg font-semibold group-hover:text-primary transition">
-                                            {item?.tutor?.user?.name}
-                                        </h3>
+                                >
+                                    {/* TOP HEADER */}
+                                    <div className="flex items-start justify-between">
+                                        <div>
+                                            <h3 className="text-lg font-semibold group-hover:text-primary transition">
+                                                {item?.tutor?.user?.name}
+                                            </h3>
 
-                                        <p className="text-xs text-muted-foreground mt-1">
-                                            {item.tutor?.experience}
-                                        </p>
+                                            <p className="text-xs text-muted-foreground mt-1">
+                                                {item.tutor?.experience}
+                                            </p>
+                                        </div>
+
+                                        {/* Badge */}
+                                        {item?.tutor?.isFeatured && (
+                                            <span className="text-[11px] px-2 py-1 rounded-full bg-yellow-100 text-yellow-700 font-medium">
+                                                Featured
+                                            </span>
+                                        )}
                                     </div>
 
-                                    {/* Badge */}
-                                    {item?.tutor?.isFeatured && (
-                                        <span className="text-[11px] px-2 py-1 rounded-full bg-yellow-100 text-yellow-700 font-medium">
-                                            Featured
-                                        </span>
-                                    )}
-                                </div>
+                                    {/* BIO */}
+                                    <p className="mt-4 text-sm text-muted-foreground line-clamp-3 leading-relaxed">
+                                        {item.tutor.bio}
+                                    </p>
 
-                                {/* BIO */}
-                                <p className="mt-4 text-sm text-muted-foreground line-clamp-3 leading-relaxed">
-                                    {item.tutor.bio}
-                                </p>
+                                    {/* RATING ROW */}
+                                    <div className="mt-5 flex items-center justify-between">
+                                        <div className="flex items-center gap-1">
+                                            <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                                            <span className="font-semibold text-sm">
+                                                {item.tutor.avgRating?.toFixed(1)}
+                                            </span>
 
-                                {/* RATING ROW */}
-                                <div className="mt-5 flex items-center justify-between">
-                                    <div className="flex items-center gap-1">
-                                        <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                                        <span className="font-semibold text-sm">
-                                            {item.tutor.avgRating?.toFixed(1)}
-                                        </span>
+                                            <span className="text-xs text-muted-foreground ml-1">
+                                                ({item.tutor.totalReviews || 0})
+                                            </span>
+                                        </div>
 
-                                        <span className="text-xs text-muted-foreground ml-1">
-                                            ({item.tutor.totalReviews || 0})
-                                        </span>
+                                        {/* PRICE */}
+                                        <div className="px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-sm font-semibold">
+                                            ৳{item.tutor.hourlyRate}/hr
+                                        </div>
                                     </div>
 
-                                    {/* PRICE */}
-                                    <div className="px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-sm font-semibold">
-                                        ৳{item.tutor.hourlyRate}/hr
+                                    {/* FOOTER */}
+                                    <div className="mt-5 pt-4 border-t flex items-center justify-between">
+                                        <span className="text-xs text-muted-foreground">
+                                            View profile
+                                        </span>
+
+                                        <span className="text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition">
+                                            Open →
+                                        </span>
                                     </div>
-                                </div>
-
-                                {/* FOOTER */}
-                                <div className="mt-5 pt-4 border-t flex items-center justify-between">
-                                    <span className="text-xs text-muted-foreground">
-                                        View profile
-                                    </span>
-
-                                    <span className="text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition">
-                                        Open →
-                                    </span>
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    </ScrollArea>
                 )}
             </section>
 
