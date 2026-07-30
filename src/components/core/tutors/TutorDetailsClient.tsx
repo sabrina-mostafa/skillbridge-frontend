@@ -291,50 +291,42 @@ export default function TutorDetailsClient({
                 </div>
               </div>
 
-              <div
-                className="
-      flex gap-5
-      overflow-x-auto
-      pb-3
-      snap-x snap-mandatory
-      scrollbar-thin
-    "
-              >
+              <div className="flex gap-5 overflow-x-auto pb-3 snap-x snap-mandatory scrollbar-thin">
                 {tutor.tutorReviews.map((review) => (
                   <div
                     key={review.id}
                     className="
-          min-w-[340px]
-          max-w-[340px]
-          border
-          rounded-2xl
-          p-5
-          bg-card
-          snap-start
-          transition-all
-          hover:-translate-y-1
-          hover:shadow-lg
-        "
+    min-w-85
+    max-w-85
+    rounded-2xl
+    border
+    bg-card
+    p-5
+    snap-start
+    transition-all
+    duration-300
+    hover:-translate-y-1
+    hover:shadow-lg
+    flex
+    flex-col
+"
                   >
                     {/* Header */}
-                    <div className="flex items-center justify-between mb-4">
+                    <div className="mb-4 flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <div
-                          className="
-                h-11 w-11
-                rounded-full
-                bg-primary/10
-                flex items-center justify-center
-                font-semibold
-                text-primary
-              "
-                        >
-                          S
+                        <div className="relative h-12 w-12 overflow-hidden rounded-full border">
+                          <Image
+                            src={review.student.user.image || "/placeholder.png"}
+                            alt={review.student.user.name}
+                            fill
+                            className="object-cover"
+                            sizes="48px"
+                          />
                         </div>
 
                         <div>
-                          <p className="font-medium">
-                            Student
+                          <p className="font-semibold">
+                            {review.student.user.name}
                           </p>
 
                           <p className="text-xs text-muted-foreground">
@@ -343,43 +335,44 @@ export default function TutorDetailsClient({
                         </div>
                       </div>
 
-                      <span
-                        className="
-              px-2.5 py-1
-              rounded-full
-              bg-yellow-100
-              text-yellow-700
-              text-xs
-              font-medium
-            "
-                      >
+                      <span className="rounded-full bg-yellow-100 px-3 py-1 text-xs font-semibold text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400">
                         {review.rating}/5
                       </span>
                     </div>
 
                     {/* Stars */}
-                    <div className="flex gap-1 mb-4">
+                    <div className="mb-4 flex gap-1">
                       {Array.from({ length: 5 }).map((_, i) => (
                         <Star
                           key={i}
                           className={`h-4 w-4 ${i < review.rating
-                            ? "fill-yellow-500 text-yellow-500"
-                            : "text-muted-foreground/30"
+                              ? "fill-yellow-500 text-yellow-500"
+                              : "text-muted-foreground/30"
                             }`}
                         />
                       ))}
                     </div>
 
                     {/* Review */}
-                    <p className="text-muted-foreground leading-7 line-clamp-5">
+                    <p className="text-sm leading-7 text-muted-foreground">
                       {review.comment}
                     </p>
 
-                    {/* Footer */}
-                    <div className="mt-5 pt-4 border-t">
-                      <p className="text-xs text-muted-foreground">
-                        {new Date(review.createdAt).toLocaleDateString()}
-                      </p>
+                    {/* Footer - Always at Bottom */}
+                    <div className="mt-auto pt-6">
+                      <div className="border-t pt-4 flex items-center justify-between">
+                        <p className="text-xs text-muted-foreground">
+                          {new Date(review.createdAt).toLocaleDateString("en-US", {
+                            day: "numeric",
+                            month: "short",
+                            year: "numeric",
+                          })}
+                        </p>
+
+                        <span className="text-xs font-medium text-primary">
+                          Verified Review
+                        </span>
+                      </div>
                     </div>
                   </div>
                 ))}
