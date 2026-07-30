@@ -314,14 +314,13 @@ export default function TutorDetailsClient({
                     {/* Header */}
                     <div className="mb-4 flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <div className="relative h-12 w-12 overflow-hidden rounded-full border">
+                        <div className="overflow-hidden rounded-full border">
                           <Image
                             src={review.student.user.image || "/placeholder.png"}
                             alt={review.student.user.name}
                             width={48}
                             height={48}
-                            className="h-12 w-12 rounded-full object-cover border"
-                            priority={false}
+                            className="h-12 w-12 object-cover object-top"
                           />
                         </div>
 
