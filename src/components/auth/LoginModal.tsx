@@ -88,8 +88,6 @@ export function LoginModal({ open, setOpen, openRegister, }: LoginModalProps) {
         toast.success("Welcome back!");
         setOpen(false);
 
-        // router.push(`/user`);
-
       } finally {
         setIsLoginLoading(false);
       }
@@ -102,7 +100,7 @@ export function LoginModal({ open, setOpen, openRegister, }: LoginModalProps) {
 
       await authClient.signIn.social({
         provider: "google",
-        callbackURL: `/auth/callback`,
+        callbackURL: `${FRONTEND_URL}/auth/callback`,
       });
     } finally {
       setIsGoogleLoading(false);
