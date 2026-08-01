@@ -248,7 +248,7 @@ export function LoginModal({ open, setOpen, openRegister, }: LoginModalProps) {
             </Button>
 
             {/* Divider */}
-            <div className="relative">
+            {/* <div className="relative">
               <div className="absolute inset-0 flex items-center">
                 <span className="w-full border-t" />
               </div>
@@ -258,10 +258,10 @@ export function LoginModal({ open, setOpen, openRegister, }: LoginModalProps) {
                   OR
                 </span>
               </div>
-            </div>
+            </div> */}
 
             {/* Google Button */}
-            <Button
+            {/* <Button
               type="button"
               variant="outline"
               disabled={isGoogleLoading}
@@ -320,7 +320,7 @@ export function LoginModal({ open, setOpen, openRegister, }: LoginModalProps) {
                   Continue with Google
                 </>
               )}
-            </Button>
+            </Button> */}
 
             {/* Footer */}
             <p className="text-center text-sm text-muted-foreground">
